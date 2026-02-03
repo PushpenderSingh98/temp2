@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Misthii ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffd1dc 0%, #ffe4e1 100%);
+            font-family: 'Fredoka', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            color: #d6336c;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(214, 51, 108, 0.2);
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        button {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #ff4757;
+            transform: scale(1.05);
+        }
+
+        /* Utility classes for hiding/showing screens */
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Loading animation */
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff6b81;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .final-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #2f3542;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="screen1" class="screen active">
+            <img src="https://i.pinimg.com/originals/e1/3a/b0/e13ab0236df7d84896dd0f3026540e03.gif" alt="Cute Gif">
+            <h1>Hemlooo Misthii, jara ye options choose karna?</h1>
+            <div class="btn-group">
+                <button onclick="chooseFood('Samosa Chaat')">Samosa Chaat 🥟</button>
+                <button onclick="chooseFood('Chole Bature')">Chole Bature 🥘</button>
+            </div>
+        </div>
+
+        <div id="screen2" class="screen">
+            <h1>And.....</h1>
+            <div class="btn-group">
+                <button onclick="choosePlace('Hill Station')">Hill Station 🏔️</button>
+                <button onclick="choosePlace('Mandir')">Mandir 🛕</button>
+                <button onclick="choosePlace('Movie Hall')">Movie Hall 🍿</button>
+            </div>
+        </div>
+
+        <div id="screen3" class="screen">
+            <h1>Idhar hi rukooo mein aaya... </h1>
+            <div class="loader"></div>
+            <p>Wait karna cutie...</p>
+        </div>
+
+        <div id="screen4" class="screen">
+            <h1 style="color: #ff4757;">Confirmed! ❤️</h1>
+            <img src="qr.png" alt="QR Code">
+            <p id="resultText" class="final-text"></p>
+            <img src="https://i.pinimg.com/originals/01/48/8e/01488ef3f919c2cef77400c8fb03607b.gif" alt="Happy Gif">
+        </div>
+
+    </div>
+
+    <script>
+        let selectedFood = "";
+        let selectedPlace = "";
+
+        // Function to handle food selection
+        function chooseFood(food) {
+            selectedFood = food;
+            document.getElementById('screen1').classList.remove('active');
+            document.getElementById('screen2').classList.add('active');
+        }
+
+        // Function to handle place selection
+        function choosePlace(place) {
+            selectedPlace = place;
+            document.getElementById('screen2').classList.remove('active');
+            document.getElementById('screen3').classList.add('active');
+
+            // Simulate "Generating" delay (3 seconds)
+            setTimeout(() => {
+                showFinalResult();
+            }, 3000);
+        }
+
+        // Function to show final screen
+        function showFinalResult() {
+            const message = `Here is your Flight Ticker Cutiee, Aa raha hu aapko kimdnap karke <b>${selectedPlace}</b> le jaane .... fir waha pe khayenge masttt <b>${selectedFood}</b>!`;
+            
+            document.getElementById('resultText').innerHTML = message;
+            
+            document.getElementById('screen3').classList.remove('active');
+            document.getElementById('screen4').classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
